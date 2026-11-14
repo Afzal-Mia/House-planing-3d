@@ -52,8 +52,21 @@
   #help { position: fixed; top: 62px; left: 50%; transform: translateX(-50%); pointer-events: none; background: var(--panel); padding: 6px 14px;
     border-radius: 14px; font-size: 12px; color: var(--muted); white-space: nowrap; transition: opacity .6s; }
   #fade { position: fixed; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity .28s; }
-  #loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #1d2228;
-    font-size: 16px; z-index: 10; }
+  #loading {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  background: #1d2228; color: var(--text);
+  transition: opacity .4s ease-out;
+}
+#loading.gone { opacity: 0; pointer-events: none; }
+.loader-spinner {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,.15);
+  border-top-color: var(--accent);
+  animation: loader-spin .8s linear infinite;
+}
+@keyframes loader-spin { to { transform: rotate(360deg); } }
+.loader-text { font-size: 14px; color: var(--muted); letter-spacing: .02em; }
 
   #joystick { position: fixed; left: 26px; bottom: 96px; width: 120px; height: 120px; border-radius: 50%;
     background: rgba(255,255,255,.12); border: 2px solid rgba(255,255,255,.35); display: none; touch-action: none; }
@@ -75,7 +88,10 @@
 </head>
 <body class="walk">
   <div id="app"></div>
-  <div id="loading">Loading 3D house...</div>
+  <div id="loading">
+    <div class="loader-spinner" aria-hidden="true"></div>
+    <div class="loader-text">Loading 3D house…</div>
+  </div>
 
   <div id="topbar">
     <span id="title"></span>

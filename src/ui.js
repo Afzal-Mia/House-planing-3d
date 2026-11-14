@@ -1,5 +1,4 @@
-import { CSS2DObject } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
-import { ROOMS, UI_TEXT, H } from './layout.js';
+import { ROOMS, UI_TEXT } from './layout.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -16,23 +15,9 @@ export function createUI(app) {
   const isTouch = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
   if (isTouch) document.body.classList.add('touch');
 
-  // Labels shown in dollhouse view
-  const labels = [];
-  for (const r of ROOMS) {
-    if (r.exterior || !r.rects.length) continue;
-    const [a, b, c, d] = r.rects[0];
-    const el = document.createElement('div');
-    el.className = 'room-label';
-    const obj = new CSS2DObject(el);
-    const [lx, lz] = r.labelAt || [(a + c) / 2, (b + d) / 2];
-    obj.position.set(lx, r.level * H.floor + 4, lz);
-    obj.userData.room = r;
-    labels.push(obj);
-    app.addLabel(obj, r.level);
-  }
-
   const panel = $('panel');
   const buttons = new Map();
+  
   function buildPanel() {
     const t = UI_TEXT[state.lang];
     panel.innerHTML = '';
@@ -65,7 +50,9 @@ export function createUI(app) {
     $('btnFull').textContent = t.full;
     $('btnTour').textContent = app.touring ? t.stop : t.tour;
     $('btnLang').textContent = t.lang;
-    for (const l of labels) l.element.textContent = state.lang === 'hi' ? l.userData.room.hi : l.userData.room.en;
+    
+    // The labels loop was removed here
+    
     updateHelp();
     buildPanel();
     setCurrentRoom(state.current, true);
@@ -140,7 +127,7 @@ export function createUI(app) {
     setModeButtons: (m) => { setModeButtons(m); flashHelp(); },
     setFloorButtons,
     setTourButton,
-    labels,
+    // The labels array was removed here
     flashHelp,
   };
 }

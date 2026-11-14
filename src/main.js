@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { H, ROOMS, TOUR } from './layout.js';
 import { createMaterials, setAnisotropy } from './materials.js';
@@ -25,10 +24,7 @@ renderer.shadowMap.autoUpdate = false;
 container.appendChild(renderer.domElement);
 setAnisotropy(renderer.capabilities.getMaxAnisotropy());
 
-const labelRenderer = new CSS2DRenderer();
-labelRenderer.setSize(window.innerWidth, window.innerHeight);
-labelRenderer.domElement.className = 'labels';
-document.body.insertBefore(labelRenderer.domElement, document.getElementById('topbar'));
+
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 800);
@@ -99,7 +95,6 @@ const app = {
     if (m === 'walk') app.setFloors('full', true);
     else { groups.neighbors.visible = false; app.setFloors(app.floors === 'full' ? 'both' : app.floors); }
     groups.neighbors.visible = m === 'walk';
-    labelRenderer.domElement.style.display = m === 'doll' ? '' : 'none';
     ui.setModeButtons(m);
     ui.setCurrentRoom(null, true);
     renderer.shadowMap.needsUpdate = true;
@@ -109,7 +104,6 @@ const app = {
     groups.first.visible = f !== 'ground';
     groups.roof.visible = f === 'full';
     const shownLevel = f === 'ground' ? 0 : 1;
-    for (const l of ui.labels) l.visible = app.mode === 'doll' && f !== 'full' && l.userData.room.level === shownLevel;
     if (!silent) ui.setFloorButtons(f);
     renderer.shadowMap.needsUpdate = true;
   },
@@ -162,7 +156,6 @@ walk.onInput = () => app.stopTour();
 function onResize() {
   const w = window.innerWidth, h = window.innerHeight;
   renderer.setSize(w, h);
-  labelRenderer.setSize(w, h);
   for (const c of [camera, dollCamera]) { c.aspect = w / h; c.updateProjectionMatrix(); }
 }
 window.addEventListener('resize', onResize);
@@ -199,9 +192,12 @@ function tick() {
   for (const r of rotors) r.rotation.y += dt * 9;
   const cam = app.mode === 'walk' ? camera : dollCamera;
   renderer.render(scene, cam);
-  if (app.mode === 'doll') labelRenderer.render(scene, cam);
-  if (++frames === 2) {
-    document.getElementById('loading').style.display = 'none';
+    if (++frames === 2) {
+    const loadingEl = document.getElementById('loading');
+    if (loadingEl) {
+      loadingEl.classList.add('gone');
+      setTimeout(() => loadingEl.remove(), 450);
+    }
     ui.flashHelp();
     window.__ready = true;
   }
