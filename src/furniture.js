@@ -423,7 +423,7 @@ export function furnishHouse(M, groups, colliders) {
   put(0, diningSet(M), 2.6, 21.5, 0, S);
   put(0, pendant(M), 2.6, 21.5, 0, { y: H.clear });
   put(0, wallArt(M, M.art2, 2.2, 3), 0.42, 21.5, R, { y: 5.2 });
-  put(0, plant(M, 1, true), 0.95, 29.2);
+  put(0, plant(M, 1, true), 5.5, 29.2);
   put(0, plant(M, 0.8), 0.9, 13.0);
   put(0, wallArt(M, M.art3, 1.6, 2.2), 0.42, 16.5, R, { y: 5.2 });
 
@@ -462,7 +462,7 @@ export function furnishHouse(M, groups, colliders) {
   // ---------- First floor ----------
   // Balcony
   for (const x of [5, 8, 11, 13.8]) put(1, plant(M, 0.6), x, 0.75);
-  put(1, chair(M, M.darkWood, M.cushion), 1.6, 0.95, R);
+  put(1, chair(M, M.darkWood, M.cushion), 1.6, 0.95, R); // Moved back to original position
 
   // Bedroom 1
   put(1, rug(M, 5, 7, M.rug), 7.0, 7.1);
@@ -471,23 +471,23 @@ export function furnishHouse(M, groups, colliders) {
   put(1, sideTable(M), 13.9, 10.9, -R, S);
   put(1, wardrobe(M, 5), 6.0, 10.8, Math.PI, S);
   put(1, dressingTable(M), 1.15, 7.0, R, S);
-  put(1, armchair(M), 5.0, 3.9, 0, S);
+  // armchair removed here
   put(1, wallArt(M, M.art1, 3.2, 1.8), 14.6, 7.1, -R, { y: 5.8 });
   fan(1, 8, 7.1);
 
   // Lobby / family sitting
-  put(1, sofa(M, 4.5, M.sofa), 1.8, 17.4, R, S);
-  put(1, coffeeTable(M, 2.4, 1.6), 4.4, 17.4, R, S);
+  put(1, sofa(M, 4.5, M.sofa), 1.8, 17.0, R, S);
+  // coffeeTable removed here
   put(1, bookshelf(M, 3, 6), 7.8, 19.2, Math.PI, S);
   put(1, plant(M, 1, true), 9.9, 19.15);
   put(1, plant(M, 0.8), 0.9, 12.8);
-  put(1, wallArt(M, M.art2, 2.4, 1.6), 0.42, 17.4, R, { y: 5.6 });
+  put(1, wallArt(M, M.art2, 2.4, 1.6), 0.42, 17.0, R, { y: 5.6 });
 
   // Bedroom 2
   put(1, bed(M, 5, 6.6, M.blanket3), 8.25, 25, -R, S);
   put(1, sideTable(M), 11.05, 21.35, -R, S);
   put(1, sideTable(M), 11.05, 28.65, -R, S);
-  put(1, wardrobe(M, 5), 6.8, 21.2, 0, S);
+  put(1, wardrobe(M, 5), 8.5, 21.2, 0, S);
   put(1, studyDesk(M), 1.4, 26.2, R, S);
   put(1, wallArt(M, M.art3, 3, 1.6), 11.78, 25, -R, { y: 5.6 });
   fan(1, 6.5, 25);
