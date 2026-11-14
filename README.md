@@ -4,6 +4,15 @@ An interactive, fully procedural 3D architectural walkthrough of a 15' x 40' row
 
 The entire house—including walls, floors, doors, windows, the staircase, and custom furniture—is generated dynamically via code (no external 3D models or image assets). It features a first-person Walk Mode, an architectural Dollhouse Mode, and a guided automated tour.
 
+## 📐 Floor Plan
+
+The 3D geometry is built entirely from scratch based on this original 2D sketch:
+
+![15x40 Floor Plan Sketch](./shots/floor-plan-15x40.png)
+_The original architectural floor plan used as the blueprint for the 3D layout._
+
+---
+
 ## 📸 Screenshots
 
 _(Run the `shot.sh` script to populate the `shots/` directory with the latest visuals)._
