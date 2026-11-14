@@ -19,17 +19,17 @@ _(Run the `shot.sh` script to populate the `shots/` directory with the latest vi
 
 ### Architectural Dollhouse View
 
-![Ground Floor Dollhouse](./shots/dollhouse-ground.png)
+![Ground Floor Dollhouse](./shots/doll_ground.png)
 _The ground floor layout viewed in isometric Dollhouse mode._
 
 ### First Floor & Terrace
 
-![First Floor Dollhouse](./shots/dollhouse-first.png)
+![First Floor Dollhouse](./shots/doll_ground_hi.png)
 _The first floor showing bedrooms, lobby, and open terrace._
 
 ### First-Person Walk Mode
 
-![Living Room Walkthrough](./shots/living-room.png)
+![Living Room Walkthrough](./shots/living.png)
 _Interior view of the living area, showcasing procedural furniture and lighting._
 
 ---
